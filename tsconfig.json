@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "module": "esnext",
+    "target": "es6",
+    // Determines the strategy used to resolve modules. "node" mimics Node.js module resolution,
+    // suitable for most projects, especially those using npm packages. "classic" was the default in
+    // early TypeScript versions but is generally not recommended. Use "node" for projects targeting
+    // Node.js or using common bundlers like Webpack.
+    //
+    // https://github.com/microsoft/TypeScript/issues/25400#issuecomment-580720429
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "incremental": true,
+    "noEmit": true,
+    "strict": true,
+    // Note that this setting is effectively ignored because it requires `noEmit` to NOT be true,
+    // which it is currently.
+    "declaration": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "sourceMap": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
