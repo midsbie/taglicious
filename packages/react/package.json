@@ -1,0 +1,12 @@
+{
+  "name": "@taglicious/react",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.2"
+  }
+}
