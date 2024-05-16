@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 import { XCircleFill, XLg } from "react-bootstrap-icons";
 
@@ -8,17 +9,24 @@ import {
   RenderTagProps,
 } from "@taglicious/react";
 
-interface Tag {
-  value: string | number;
-  label: string;
-}
+type Variant = "input" | "select";
+
+const variantClassMapping: Record<Variant, string> = {
+  input: "form-control",
+  select: "form-select",
+};
 
 interface Props extends BaseProps {
+  variant?: Variant;
 }
 
-export function Taglicious(props: Props) {
+export function Taglicious({ variant = "input", className, ...props }: Props) {
+  const mappedVariantClass = variantClassMapping[variant];
+  if (mappedVariantClass) className = classNames(className, mappedVariantClass);
+
   return (
     <BaseTaglicious
+      className={className}
       {...props}
       renderInput={renderInput}
       renderTag={renderTag}
