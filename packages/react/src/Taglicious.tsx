@@ -88,9 +88,9 @@ export function Taglicious({
   );
 
   return (
-    <div className="taglicious form-select">
-      <div className="outer-container">
-        <div className="input-container">
+    <div className={classNames("taglicious", className)}>
+      <div className="taglicious-outer-container">
+        <div className="taglicious-input-container">
           {[...value].map((tag, index) => (
             <React.Fragment key={index}>
               {renderTag({ tag, onRemove: handleRemove })}
@@ -104,7 +104,7 @@ export function Taglicious({
           })}
         </div>
 
-        <div className="controls">
+        <div className="taglicious-controls">
           {(value.length > 0 || inputValue) && renderClearButton({ clear })}
         </div>
       </div>

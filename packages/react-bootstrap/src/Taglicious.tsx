@@ -24,7 +24,7 @@ export function Taglicious(props: Props) {
       renderInput={renderInput}
       renderTag={renderTag}
       renderClearButton={({ clear }) => (
-        <span className="clear-btn" onClick={clear}>
+        <span className="taglicious-clear-btn" onClick={clear}>
           <XLg />
         </span>
       )}
@@ -35,7 +35,7 @@ export function Taglicious(props: Props) {
 function renderInput({ placeholder, inputValue, onChange, onKeyDown }: RenderInputProps) {
   return (
     <input
-      className="filter-input"
+      className="taglicious-filter-input"
       type="text"
       placeholder={placeholder}
       value={inputValue}
@@ -47,10 +47,10 @@ function renderInput({ placeholder, inputValue, onChange, onKeyDown }: RenderInp
 
 function renderTag({ tag, onRemove }: RenderTagProps) {
   return (
-    <div className="tag">
+    <div className="taglicious-tag">
       {tag.label}
       {onRemove && (
-        <span className="remove-btn" onClick={(ev) => onRemove(ev, tag)}>
+        <span className="taglicious-remove-btn" onClick={(ev) => onRemove(ev, tag)}>
           <XCircleFill />
         </span>
       )}
