@@ -1,13 +1,13 @@
 .taglicious {
-  .outer-container {
+  .taglicious-outer-container {
     display: flex;
 
-    .input-container {
+    .taglicious-input-container {
       display: flex;
       flex-grow: 1;
       flex-wrap: wrap;
 
-      .tag {
+      .taglicious-tag {
         display: flex;
         align-items: center;
         background-color: #e0e0e0;
@@ -16,13 +16,13 @@
         margin-right: 5px;
         margin-bottom: 5px;
 
-        .remove-btn {
+        .taglicious-remove-btn {
           margin-left: 5px;
           cursor: pointer;
         }
       }
 
-      .filter-input {
+      .taglicious-filter-input {
         border: none;
         outline: none;
         flex-grow: 1;
@@ -31,11 +31,11 @@
       }
     }
 
-    .controls {
+    .taglicious-controls {
       flex: 0 1 auto;
       align-self: center;
 
-      .clear-btn {
+      .taglicious-clear-btn {
         margin-left: 10px;
         cursor: pointer;
       }
