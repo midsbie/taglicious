@@ -16,7 +16,7 @@ const variantClassMapping: Record<Variant, string> = {
   select: "form-select",
 };
 
-interface Props extends BaseProps {
+export interface Props extends BaseProps {
   variant?: Variant;
 }
 
