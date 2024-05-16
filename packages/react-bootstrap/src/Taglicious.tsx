@@ -1,20 +1,19 @@
 import * as React from "react";
 import { XCircleFill, XLg } from "react-bootstrap-icons";
 
-import { InputChangeAction } from "@taglicious/model";
-import { Taglicious as BaseTaglicious, RenderInputProps, RenderTagProps } from "@taglicious/react";
+import {
+  Props as BaseProps,
+  Taglicious as BaseTaglicious,
+  RenderInputProps,
+  RenderTagProps,
+} from "@taglicious/react";
 
 interface Tag {
   value: string | number;
   label: string;
 }
 
-interface Props {
-  placeholder?: string;
-  value: Tag[];
-  onInputChange(input: string, action: InputChangeAction): boolean | Promise<boolean>;
-  onRemove?(tag: Tag): void;
-  onClear?(): void;
+interface Props extends BaseProps {
 }
 
 export function Taglicious(props: Props) {

@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 
 import { InputChangeAction, Tag } from "@taglicious/model";
@@ -14,20 +15,24 @@ export interface RenderTagProps {
   onRemove: (ev: React.MouseEvent<HTMLElement>, tag: Tag) => void;
 }
 
-interface Props {
+export interface Props {
+  className?: string;
   placeholder?: string;
   value: Tag[];
 
   onInputChange(input: string, action: InputChangeAction): boolean | Promise<boolean>;
   onRemove?(tag: Tag): void;
   onClear?(): void;
+}
 
+interface PropsWithRender extends Props {
   renderInput(props: RenderInputProps): React.ReactNode;
   renderTag(props: RenderTagProps): React.ReactNode;
   renderClearButton(props: { clear: () => void }): React.ReactNode;
 }
 
 export function Taglicious({
+  className,
   placeholder,
   value,
   onInputChange,
@@ -36,7 +41,7 @@ export function Taglicious({
   renderInput,
   renderTag,
   renderClearButton,
-}: Props) {
+}: PropsWithRender) {
   const isMountedRef = React.useRef(true);
   const [inputValue, setInputValue] = React.useState("");
 
