@@ -3,7 +3,7 @@ export enum InputChangeAction {
   add,
 }
 
-export type TagValue = string | number;
+export type TagValue = string;
 
 export interface Tag {
   value: TagValue;
