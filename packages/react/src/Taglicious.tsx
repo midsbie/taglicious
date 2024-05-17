@@ -28,7 +28,7 @@ export interface Props {
 
   onInputChange(input: string, action: InputChangeAction): boolean | Promise<boolean>;
   onRemove?(tag: Tag): void;
-  onClear?(): void;
+  onClear?(ev?: React.MouseEvent | undefined): void;
 }
 
 interface PropsWithRender extends Props {
@@ -61,9 +61,9 @@ export function Taglicious({
     };
   }, []);
 
-  function clear() {
+  function clear(ev?: React.MouseEvent | undefined) {
     onInputChange("", InputChangeAction.filter);
-    onClear?.();
+    onClear?.(ev);
     setInputValue("");
   }
 
