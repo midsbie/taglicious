@@ -4,6 +4,7 @@ import * as React from "react";
 import { InputChangeAction, Tag } from "@taglicious/model";
 
 export interface RenderInputProps {
+  inputRef: React.RefObject<HTMLElement>;
   placeholder?: string;
   value: string;
   onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
@@ -50,6 +51,7 @@ export function Taglicious({
   renderTag,
   renderClearButton,
 }: PropsWithRender) {
+  const inputRef = React.useRef<HTMLElement | null>(null);
   const isMountedRef = React.useRef(true);
   const [inputValue, setInputValue] = React.useState("");
 
@@ -64,6 +66,7 @@ export function Taglicious({
   function clear(ev?: React.MouseEvent | undefined) {
     onInputChange("", InputChangeAction.filter);
     onClear?.(ev);
+    if (ev) inputRef.current?.focus();
     setInputValue("");
   }
 
@@ -111,6 +114,7 @@ export function Taglicious({
           ))}
           {!isStatic &&
             renderInput({
+              inputRef,
               value: inputValue,
               onChange: handleChange,
               onKeyDown: handleKeyDown,
