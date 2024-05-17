@@ -5,6 +5,7 @@ import { XCircleFill, XLg } from "react-bootstrap-icons";
 import {
   Props as BaseProps,
   Taglicious as BaseTaglicious,
+  RenderClearButtonProps,
   RenderInputProps,
   RenderTagProps,
 } from "@taglicious/react";
@@ -30,11 +31,7 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
       {...props}
       renderInput={renderInput}
       renderTag={renderTag}
-      renderClearButton={({ clear }) => (
-        <span className="taglicious-clear-btn" onClick={clear}>
-          <XLg />
-        </span>
-      )}
+      renderClearButton={renderClearButton}
     />
   );
 }
@@ -62,5 +59,13 @@ function renderTag({ tag, onRemove }: RenderTagProps) {
         </span>
       )}
     </div>
+  );
+}
+
+function renderClearButton({ onClick }: RenderClearButtonProps) {
+  return (
+    <span className="taglicious-clear-btn" onClick={onClick}>
+      <XLg />
+    </span>
   );
 }

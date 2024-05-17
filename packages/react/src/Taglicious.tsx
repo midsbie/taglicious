@@ -15,6 +15,10 @@ export interface RenderTagProps {
   onRemove: (ev: React.MouseEvent<HTMLElement>, tag: Tag) => void;
 }
 
+export interface RenderClearButtonProps<T = Element> {
+  onClick: (ev: React.MouseEvent<T>) => void;
+}
+
 export interface Props {
   className?: string;
   placeholder?: string;
@@ -28,7 +32,7 @@ export interface Props {
 interface PropsWithRender extends Props {
   renderInput(props: RenderInputProps): React.ReactNode;
   renderTag(props: RenderTagProps): React.ReactNode;
-  renderClearButton(props: { clear: () => void }): React.ReactNode;
+  renderClearButton(props: RenderClearButtonProps): React.ReactNode;
 }
 
 export function Taglicious({
