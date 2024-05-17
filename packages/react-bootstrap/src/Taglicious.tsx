@@ -36,13 +36,13 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
   );
 }
 
-function renderInput({ placeholder, inputValue, onChange, onKeyDown }: RenderInputProps) {
+function renderInput({ placeholder, value, onChange, onKeyDown }: RenderInputProps) {
   return (
     <input
       className="taglicious-filter-input"
       type="text"
       placeholder={placeholder}
-      value={inputValue}
+      value={value}
       onChange={onChange}
       onKeyDown={onKeyDown}
     />

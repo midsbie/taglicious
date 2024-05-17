@@ -5,14 +5,14 @@ import { InputChangeAction, Tag } from "@taglicious/model";
 
 export interface RenderInputProps {
   placeholder?: string;
-  inputValue: string;
+  value: string;
   onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-export interface RenderTagProps {
+export interface RenderTagProps<T = Element> {
   tag: Tag;
-  onRemove: (ev: React.MouseEvent<HTMLElement>, tag: Tag) => void;
+  onRemove: (ev: React.MouseEvent<T>, tag: Tag) => void;
 }
 
 export interface RenderClearButtonProps<T = Element> {
@@ -20,6 +20,8 @@ export interface RenderClearButtonProps<T = Element> {
 }
 
 export interface Props {
+  static?: boolean;
+  clearable?: boolean;
   className?: string;
   placeholder?: string;
   value: Tag[];
@@ -36,6 +38,8 @@ interface PropsWithRender extends Props {
 }
 
 export function Taglicious({
+  static: isStatic,
+  clearable: isClearable = true,
   className,
   placeholder,
   value,
@@ -89,7 +93,7 @@ export function Taglicious({
   );
 
   const handleRemove = React.useCallback(
-    (ev: React.MouseEvent<HTMLElement>, tag: Tag) => {
+    (ev: React.MouseEvent<Element>, tag: Tag) => {
       ev.stopPropagation();
       onRemove?.(tag);
     },
@@ -105,16 +109,17 @@ export function Taglicious({
               {renderTag({ tag, onRemove: handleRemove })}
             </React.Fragment>
           ))}
-          {renderInput({
-            inputValue,
-            onChange: handleChange,
-            onKeyDown: handleKeyDown,
-            placeholder,
-          })}
+          {!isStatic &&
+            renderInput({
+              value: inputValue,
+              onChange: handleChange,
+              onKeyDown: handleKeyDown,
+              placeholder,
+            })}
         </div>
 
         <div className="taglicious-controls">
-          {(value.length > 0 || inputValue) && renderClearButton({ clear })}
+          {isClearable && (value.length > 0 || inputValue) && renderClearButton({ onClick: clear })}
         </div>
       </div>
     </div>
