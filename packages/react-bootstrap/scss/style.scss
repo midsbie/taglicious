@@ -10,15 +10,10 @@
       .taglicious-tag {
         display: flex;
         align-items: center;
-        background-color: #e0e0e0;
-        border-radius: 3px;
-        padding: 5px;
-        margin-right: 5px;
-        margin-bottom: 5px;
 
         .taglicious-remove-btn {
-          margin-left: 5px;
           cursor: pointer;
+          display: flex;
         }
       }
 
@@ -26,8 +21,7 @@
         border: none;
         outline: none;
         flex-grow: 1;
-        min-width: 150px;
-        padding: 5px;
+        min-width: 10rem;
       }
     }
 
@@ -36,7 +30,6 @@
       align-self: center;
 
       .taglicious-clear-btn {
-        margin-left: 10px;
         cursor: pointer;
       }
     }

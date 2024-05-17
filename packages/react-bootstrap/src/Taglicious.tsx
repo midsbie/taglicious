@@ -51,11 +51,11 @@ function renderInput({ placeholder, value, onChange, onKeyDown }: RenderInputPro
 
 function renderTag({ tag, onRemove }: RenderTagProps) {
   return (
-    <div className="taglicious-tag">
-      {tag.label}
+    <div className="taglicious-tag text-bg-secondary me-2 ps-2 pe-2 rounded-1 mb-1">
+      <span>{tag.label}</span>
       {onRemove && (
-        <span className="taglicious-remove-btn" onClick={(ev) => onRemove(ev, tag)}>
-          <XCircleFill />
+        <span className="taglicious-remove-btn link-light ps-2" onClick={(ev) => onRemove(ev, tag)}>
+          <XCircleFill className="" />
         </span>
       )}
     </div>
@@ -64,7 +64,7 @@ function renderTag({ tag, onRemove }: RenderTagProps) {
 
 function renderClearButton({ onClick }: RenderClearButtonProps) {
   return (
-    <span className="taglicious-clear-btn" onClick={onClick}>
+    <span className="taglicious-clear-btn ms-2" onClick={onClick}>
       <XLg />
     </span>
   );
