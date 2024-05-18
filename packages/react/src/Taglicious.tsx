@@ -25,7 +25,7 @@ export interface Props {
   clearable?: boolean;
   className?: string;
   placeholder?: string;
-  value: Tag[];
+  value: readonly Tag[];
 
   onInputChange(input: string, action: InputChangeAction): boolean | Promise<boolean>;
   onRemove?(tag: Tag): void;
@@ -63,12 +63,15 @@ export function Taglicious({
     };
   }, []);
 
-  function clear(ev?: React.MouseEvent | undefined) {
-    onInputChange("", InputChangeAction.filter);
-    onClear?.(ev);
-    if (ev) inputRef.current?.focus();
-    setInputValue("");
-  }
+  const clear = React.useCallback(
+    (ev?: React.MouseEvent | undefined) => {
+      onInputChange("", InputChangeAction.filter);
+      onClear?.(ev);
+      if (ev) inputRef.current?.focus();
+      setInputValue("");
+    },
+    [onInputChange, onClear],
+  );
 
   const handleKeyDown = React.useCallback(
     async (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -83,7 +86,7 @@ export function Taglicious({
           return;
       }
     },
-    [inputValue, onInputChange],
+    [inputValue, clear, onInputChange],
   );
 
   const handleChange = React.useCallback(
