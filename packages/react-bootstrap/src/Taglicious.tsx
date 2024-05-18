@@ -36,16 +36,13 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
   );
 }
 
-function renderInput({ inputRef, placeholder, value, onChange, onKeyDown }: RenderInputProps) {
+function renderInput({ inputRef, ...props }: RenderInputProps) {
   return (
     <input
+      {...props}
       ref={inputRef as React.RefObject<HTMLInputElement>}
       className="taglicious-filter-input"
       type="text"
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
     />
   );
 }

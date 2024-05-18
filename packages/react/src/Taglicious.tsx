@@ -9,6 +9,8 @@ export interface RenderInputProps {
   value: string;
   onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onFocus: (ev: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur: (ev: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 export interface RenderTagProps<T = Element> {
@@ -25,6 +27,7 @@ export interface Props {
   clearable?: boolean;
   className?: string;
   placeholder?: string;
+  focused?: boolean;
   value: readonly Tag[];
 
   onInputChange(input: string, action: InputChangeAction): boolean | Promise<boolean>;
@@ -43,6 +46,7 @@ export function Taglicious({
   clearable: isClearable = true,
   className,
   placeholder,
+  focused: forcefullyFocused = false,
   value,
   onInputChange,
   onRemove,
@@ -54,6 +58,7 @@ export function Taglicious({
   const inputRef = React.useRef<HTMLElement | null>(null);
   const isMountedRef = React.useRef(true);
   const [inputValue, setInputValue] = React.useState("");
+  const [isFocused, setIsFocused] = React.useState(false);
 
   React.useEffect(() => {
     isMountedRef.current = true;
@@ -72,6 +77,9 @@ export function Taglicious({
     },
     [onInputChange, onClear],
   );
+
+  const handleFocus = React.useCallback(() => setIsFocused(true), []);
+  const handleBlur = React.useCallback(() => setIsFocused(false), []);
 
   const handleKeyDown = React.useCallback(
     async (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -108,7 +116,11 @@ export function Taglicious({
   );
 
   return (
-    <div className={classNames("taglicious", className)}>
+    <div
+      className={classNames("taglicious", className, {
+        "focus-ring": forcefullyFocused || isFocused,
+      })}
+    >
       <div className="taglicious-outer-container">
         <div className="taglicious-input-container">
           {[...value].map((tag, index) => (
@@ -119,10 +131,12 @@ export function Taglicious({
           {!isStatic &&
             renderInput({
               inputRef,
+              placeholder,
               value: inputValue,
               onChange: handleChange,
               onKeyDown: handleKeyDown,
-              placeholder,
+              onFocus: handleFocus,
+              onBlur: handleBlur,
             })}
         </div>
 
