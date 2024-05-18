@@ -99,6 +99,7 @@ export function Taglicious({
     (ev: React.MouseEvent<Element>, tag: Tag) => {
       ev.stopPropagation();
       onRemove?.(tag);
+      inputRef.current?.focus();
     },
     [onRemove],
   );
