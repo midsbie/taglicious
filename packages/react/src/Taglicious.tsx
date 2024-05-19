@@ -19,7 +19,7 @@ export interface RenderInputProps {
 
 export interface RenderTagProps<T = Element> {
   tag: Tag;
-  onRemove: (ev: React.MouseEvent<T>, tag: Tag) => void;
+  onRemove: ((ev: React.MouseEvent<T>, tag: Tag) => void) | undefined | null;
 }
 
 export interface RenderClearButtonProps<T = Element> {
@@ -137,7 +137,9 @@ export function Taglicious({
   );
 
   const tags = [...value].map((tag, index) => (
-    <React.Fragment key={index}>{renderTag({ tag, onRemove: handleRemove })}</React.Fragment>
+    <React.Fragment key={index}>
+      {renderTag({ tag, onRemove: onRemove ? handleRemove : null })}
+    </React.Fragment>
   ));
 
   let input;
