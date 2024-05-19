@@ -1,0 +1,39 @@
+.taglicious {
+  .taglicious-outer-container {
+    display: flex;
+
+    .taglicious-tags-container {
+      // Handle overflow when input container exceeds available width after wrapping.
+      min-width: 0;
+      overflow: hidden;
+
+      display: flex;
+      flex: 1 1 auto;
+      flex-wrap: wrap;
+
+      .taglicious-tag {
+        display: flex;
+        align-items: center;
+        cursor: default;
+
+        .taglicious-remove-btn {
+          cursor: pointer;
+          display: flex;
+        }
+      }
+    }
+
+    .taglicious-input-placeholder {
+      user-select: none;
+    }
+
+    .taglicious-controls {
+      flex: 0 1 auto;
+      align-self: center;
+
+      .taglicious-clear-btn {
+        cursor: pointer;
+      }
+    }
+  }
+}
