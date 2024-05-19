@@ -98,6 +98,11 @@ export function Taglicious({
   const handleKeyDown = React.useCallback(
     async (event: React.KeyboardEvent<HTMLInputElement>) => {
       switch (event.key) {
+        case "Backspace": {
+          const last = value[value.length - 1];
+          if (last && !inputValue) onRemove?.(last);
+          return;
+        }
         case "Enter": {
           const r = await onInputChange(inputValue.trim(), InputChangeAction.add);
           if (isMountedRef.current && r === true) setInputValue("");
@@ -108,7 +113,7 @@ export function Taglicious({
           return;
       }
     },
-    [inputValue, clear, onInputChange],
+    [inputValue, clear, onInputChange, onRemove],
   );
 
   const handleChange = React.useCallback(
