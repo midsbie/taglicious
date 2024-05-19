@@ -106,7 +106,10 @@ export function Taglicious({
         onClear?.(ev);
       }
 
-      if (ev) inputRef.current?.focus();
+      if (ev) {
+        inputRef.current?.focus();
+        ev.stopPropagation();
+      }
     },
     [inputValue, onInputChange, onClear],
   );
@@ -152,6 +155,7 @@ export function Taglicious({
       ev.stopPropagation();
       onRemove?.(tag);
       inputRef.current?.focus();
+      ev.stopPropagation();
     },
     [onRemove],
   );
