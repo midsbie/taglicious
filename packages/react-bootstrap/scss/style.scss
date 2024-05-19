@@ -1,3 +1,5 @@
+@import "../../react/scss/style";
+
 .taglicious {
   &.focus-ring {
     box-shadow: var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur, 0)
@@ -5,27 +7,7 @@
   }
 
   .taglicious-outer-container {
-    display: flex;
-
     .taglicious-tags-container {
-      // Handle overflow when input container exceeds available width after wrapping.
-      min-width: 0;
-      overflow: hidden;
-
-      display: flex;
-      flex: 1 1 auto;
-      flex-wrap: wrap;
-
-      .taglicious-tag {
-        display: flex;
-        align-items: center;
-
-        .taglicious-remove-btn {
-          cursor: pointer;
-          display: flex;
-        }
-      }
-
       .taglicious-input-container {
         flex: 1 1 auto;
         // Inline grid layout here and in .taglicious-filter-input together with ::after trick
@@ -58,15 +40,6 @@
         margin: 0;
         outline: 0;
         padding: 0;
-      }
-    }
-
-    .taglicious-controls {
-      flex: 0 1 auto;
-      align-self: center;
-
-      .taglicious-clear-btn {
-        cursor: pointer;
       }
     }
   }
