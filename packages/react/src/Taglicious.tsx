@@ -9,7 +9,6 @@ export interface RenderPlaceholderProps {
 
 export interface RenderInputProps {
   inputRef: React.RefObject<HTMLElement>;
-  placeholder?: string;
   value: string;
   onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -148,7 +147,6 @@ export function Taglicious({
       <div className="taglicious-input-container" data-value={inputValue}>
         {renderInput({
           inputRef,
-          placeholder,
           value: inputValue,
           onChange: handleChange,
           onKeyDown: handleKeyDown,
