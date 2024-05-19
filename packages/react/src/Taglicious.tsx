@@ -32,6 +32,7 @@ export interface Props {
   focused?: boolean;
   value: readonly Tag[];
 
+  onFocusChange?(isFocused: boolean): void;
   onInputChange(input: string, action: InputChangeAction): boolean | Promise<boolean>;
   onRemove?(tag: Tag): void;
   onClear?(ev?: React.MouseEvent | undefined): void;
@@ -50,6 +51,7 @@ export function Taglicious({
   placeholder,
   focused: forcefullyFocused = false,
   value,
+  onFocusChange,
   onInputChange,
   onRemove,
   onClear,
@@ -75,6 +77,10 @@ export function Taglicious({
   React.useEffect(() => {
     if (forcefullyFocused && !isFocused) inputRef.current?.focus();
   }, [forcefullyFocused]);
+
+  React.useEffect(() => {
+    onFocusChange?.(isFocused);
+  }, [isFocused]);
 
   const clear = React.useCallback(
     (ev?: React.MouseEvent | undefined) => {
