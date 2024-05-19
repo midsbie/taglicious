@@ -143,9 +143,7 @@ export function Taglicious({
     (ev: React.ChangeEvent<HTMLInputElement>) => {
       const next = ev.target.value;
       setInputValue(next);
-
-      const tn = next.trim();
-      if (tn) onInputChange(tn, InputChangeAction.filter);
+      onInputChange(next.trim(), InputChangeAction.filter);
     },
     [onInputChange],
   );
