@@ -85,7 +85,7 @@ export function Taglicious({
   }, [isFocused]);
 
   React.useEffect(() => {
-    if (!autoclear || !inputValue) return;
+    if (!autoclear || !inputValue || isCurrentlyFocused) return;
 
     const timeoutId = setTimeout(() => {
       setInputValue("");
