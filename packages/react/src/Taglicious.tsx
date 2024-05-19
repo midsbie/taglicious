@@ -3,26 +3,25 @@ import * as React from "react";
 
 import { InputChangeAction, Tag } from "@taglicious/model";
 
-export interface RenderPlaceholderProps {
-  placeholder?: string;
+export interface RenderComponents {
+  Container: React.FC<RenderProps>;
+  Input: React.FC<RenderInputProps>;
+  Placeholder: React.FC<RenderProps>;
+  Tag: React.FC<RenderTagProps>;
+  ClearButton: React.FC<RenderProps>;
 }
 
-export interface RenderInputProps {
+export interface RenderProps extends React.AllHTMLAttributes<HTMLElement> {
+  isFocused: boolean;
+}
+
+export interface RenderInputProps extends RenderProps {
   inputRef: React.RefObject<HTMLElement>;
-  value: string;
-  onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  onFocus: (ev: React.FocusEvent<HTMLInputElement>) => void;
-  onBlur: (ev: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-export interface RenderTagProps<T = Element> {
+export interface RenderTagProps<T = Element> extends RenderProps {
   tag: Tag;
-  onRemove: ((ev: React.MouseEvent<T>, tag: Tag) => void) | undefined | null;
-}
-
-export interface RenderClearButtonProps<T = Element> {
-  onClick: (ev: React.MouseEvent<T>) => void;
+  onRemove: ((ev: React.MouseEvent<T>) => void) | undefined | null;
 }
 
 export interface Props {
@@ -40,10 +39,7 @@ export interface Props {
 }
 
 interface PropsWithRender extends Props {
-  renderPlaceholder(props: RenderPlaceholderProps): React.ReactNode;
-  renderInput(props: RenderInputProps): React.ReactNode;
-  renderTag(props: RenderTagProps): React.ReactNode;
-  renderClearButton(props: RenderClearButtonProps): React.ReactNode;
+  components: RenderComponents;
 }
 
 export function Taglicious({
@@ -57,16 +53,14 @@ export function Taglicious({
   onInputChange,
   onRemove,
   onClear,
-  renderPlaceholder,
-  renderInput,
-  renderTag,
-  renderClearButton,
+  components,
 }: PropsWithRender) {
   const inputRef = React.useRef<HTMLElement | null>(null);
   const isMountedRef = React.useRef(true);
   const [inputValue, setInputValue] = React.useState("");
   const [isFocused, setIsFocused] = React.useState(false);
   const isCurrentlyFocused = forcefullyFocused || isFocused;
+  const { Container, Input, Placeholder, Tag, ClearButton } = components;
 
   React.useEffect(() => {
     isMountedRef.current = true;
@@ -158,40 +152,46 @@ export function Taglicious({
     [onRemove],
   );
 
-  const tags = [...value].map((tag, index) => (
-    <React.Fragment key={index}>
-      {renderTag({ tag, onRemove: onRemove ? handleRemove : null })}
-    </React.Fragment>
-  ));
+  const attrs = { isFocused };
+
+  const tags = [...value].map((tag, index) => {
+    const removeHandler = onRemove ? (ev: React.MouseEvent) => handleRemove(ev, tag) : null;
+    return <Tag key={index} {...attrs} tag={tag} onRemove={removeHandler} />;
+  });
 
   let input;
   if (!isCurrentlyFocused && !inputValue && value.length < 1) {
     input = (
-      <div className="taglicious-input-placeholder">{renderPlaceholder({ placeholder })}</div>
+      <div className="taglicious-input-placeholder">
+        <Placeholder {...attrs} placeholder={placeholder} />
+      </div>
     );
   } else {
     input = (
       <div className="taglicious-input-container" data-value={inputValue}>
-        {renderInput({
-          inputRef,
-          value: inputValue,
-          onChange: handleChange,
-          onKeyDown: handleKeyDown,
-          onFocus: handleFocus,
-          onBlur: handleBlur,
-        })}
+        <Input
+          {...attrs}
+          inputRef={inputRef}
+          value={inputValue}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
       </div>
     );
   }
 
   let clearButton;
   if (isClearable && (value.length > 0 || inputValue)) {
-    clearButton = renderClearButton({ onClick: clear });
+    clearButton = <ClearButton {...attrs} onClick={clear} />;
   }
 
   return (
-    <div
-      className={classNames("taglicious", className, { "focus-ring": isCurrentlyFocused })}
+    <Container
+      {...attrs}
+      isFocused={isCurrentlyFocused}
+      className={classNames("taglicious", className)}
       onClick={handleSetFocus}
     >
       <div className="taglicious-outer-container">
@@ -202,6 +202,6 @@ export function Taglicious({
 
         <div className="taglicious-controls">{clearButton}</div>
       </div>
-    </div>
+    </Container>
   );
 }

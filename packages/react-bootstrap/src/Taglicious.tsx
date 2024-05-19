@@ -5,9 +5,8 @@ import { XCircleFill, XLg } from "react-bootstrap-icons";
 import {
   Props as BaseProps,
   Taglicious as BaseTaglicious,
-  RenderClearButtonProps,
   RenderInputProps,
-  RenderPlaceholderProps,
+  RenderProps,
   RenderTagProps,
 } from "@taglicious/react";
 
@@ -23,22 +22,32 @@ export interface Props extends BaseProps {
 }
 
 export function Taglicious({ variant = "input", className, ...props }: Props) {
+  const components = React.useMemo(
+    () => ({
+      Container,
+      Input,
+      Placeholder,
+      Tag,
+      ClearButton,
+    }),
+    [],
+  );
+
   const mappedVariantClass = variantClassMapping[variant];
   if (mappedVariantClass) className = classNames(className, mappedVariantClass);
 
+  return <BaseTaglicious className={className} {...props} components={components} />;
+}
+
+function Container({ isFocused, className, children, ...props }: RenderProps) {
   return (
-    <BaseTaglicious
-      className={className}
-      {...props}
-      renderPlaceholder={renderPlaceholder}
-      renderInput={renderInput}
-      renderTag={renderTag}
-      renderClearButton={renderClearButton}
-    />
+    <div {...props} className={classNames(className, { "focus-ring": isFocused })}>
+      {children}
+    </div>
   );
 }
 
-function renderPlaceholder({ placeholder, ...props }: RenderPlaceholderProps) {
+function Placeholder({ placeholder, ...props }: RenderProps) {
   return (
     <span {...props} className="text-muted">
       {placeholder}
@@ -46,8 +55,7 @@ function renderPlaceholder({ placeholder, ...props }: RenderPlaceholderProps) {
   );
 }
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-function renderInput({ inputRef, placeholder, ...props }: RenderInputProps) {
+function Input({ inputRef, ...props }: RenderInputProps) {
   return (
     <input
       autoCapitalize="none"
@@ -66,14 +74,13 @@ function renderInput({ inputRef, placeholder, ...props }: RenderInputProps) {
     />
   );
 }
-/* eslint-enable @typescript-eslint/no-unused-vars */
 
-function renderTag({ tag, onRemove }: RenderTagProps) {
+function Tag({ tag, onRemove }: RenderTagProps) {
   return (
     <div className="taglicious-tag text-bg-secondary me-2 ps-2 pe-2 rounded-1 mb-1">
       <span>{tag.label}</span>
       {onRemove && (
-        <span className="taglicious-remove-btn link-light ps-2" onClick={(ev) => onRemove(ev, tag)}>
+        <span className="taglicious-remove-btn link-light ps-2" onClick={onRemove}>
           <XCircleFill className="" />
         </span>
       )}
@@ -81,7 +88,7 @@ function renderTag({ tag, onRemove }: RenderTagProps) {
   );
 }
 
-function renderClearButton({ onClick }: RenderClearButtonProps) {
+function ClearButton({ onClick }: RenderProps) {
   return (
     <span className="taglicious-clear-btn ms-2" onClick={onClick}>
       <XLg />
