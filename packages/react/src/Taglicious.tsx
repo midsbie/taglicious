@@ -79,12 +79,16 @@ export function Taglicious({
 
   const clear = React.useCallback(
     (ev?: React.MouseEvent | undefined) => {
-      onInputChange("", InputChangeAction.filter);
-      onClear?.(ev);
+      if (inputValue) {
+        onInputChange("", InputChangeAction.filter);
+        setInputValue("");
+      } else {
+        onClear?.(ev);
+      }
+
       if (ev) inputRef.current?.focus();
-      setInputValue("");
     },
-    [onInputChange, onClear],
+    [inputValue, onInputChange, onClear],
   );
 
   const handleSetFocus = React.useCallback(() => inputRef.current?.focus(), []);
@@ -111,7 +115,9 @@ export function Taglicious({
     (ev: React.ChangeEvent<HTMLInputElement>) => {
       const next = ev.target.value;
       setInputValue(next);
-      onInputChange(next.trim(), InputChangeAction.filter);
+
+      const tn = next.trim();
+      if (tn) onInputChange(tn, InputChangeAction.filter);
     },
     [onInputChange],
   );
