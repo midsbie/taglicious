@@ -10,7 +10,7 @@ with customizable rendering and seamless integration with various UI libraries.
 - Event handling for adding, filtering, and removing tags.
 - Clear button for resetting the input and tags.
 - Modular architecture allowing framework-specific implementations.
-    
+
 ## Getting Started
 
 This guide will help you set up and use the Taglicious library in your project.
@@ -28,8 +28,8 @@ yarn install
 Import the required components and types from the library:
 
 ```jsx
-import { Taglicious } from '@taglicious/react-bootstrap';
-import { Tag } from '@taglicious/model';
+import { Tag } from "@taglicious/model";
+import { Taglicious } from "@taglicious/react-bootstrap";
 ```
 
 Define your tags and input handlers:
@@ -73,4 +73,5 @@ Contributions are what make the open-source community such an amazing place to l
 create. All contributions are greatly appreciated.
 
 ## License
+
 Distributed under the MIT License. See LICENSE for more information.
