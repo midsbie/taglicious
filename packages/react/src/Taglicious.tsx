@@ -3,6 +3,10 @@ import * as React from "react";
 
 import { InputChangeAction, Tag } from "@taglicious/model";
 
+export interface RenderPlaceholderProps {
+  placeholder?: string;
+}
+
 export interface RenderInputProps {
   inputRef: React.RefObject<HTMLElement>;
   placeholder?: string;
@@ -23,7 +27,6 @@ export interface RenderClearButtonProps<T = Element> {
 }
 
 export interface Props {
-  static?: boolean;
   clearable?: boolean;
   className?: string;
   placeholder?: string;
@@ -36,13 +39,13 @@ export interface Props {
 }
 
 interface PropsWithRender extends Props {
+  renderPlaceholder(props: RenderPlaceholderProps): React.ReactNode;
   renderInput(props: RenderInputProps): React.ReactNode;
   renderTag(props: RenderTagProps): React.ReactNode;
   renderClearButton(props: RenderClearButtonProps): React.ReactNode;
 }
 
 export function Taglicious({
-  static: isStatic,
   clearable: isClearable = true,
   className,
   placeholder,
@@ -51,6 +54,7 @@ export function Taglicious({
   onInputChange,
   onRemove,
   onClear,
+  renderPlaceholder,
   renderInput,
   renderTag,
   renderClearButton,
@@ -59,6 +63,7 @@ export function Taglicious({
   const isMountedRef = React.useRef(true);
   const [inputValue, setInputValue] = React.useState("");
   const [isFocused, setIsFocused] = React.useState(false);
+  const isCurrentlyFocused = forcefullyFocused || isFocused;
 
   React.useEffect(() => {
     isMountedRef.current = true;
@@ -67,6 +72,10 @@ export function Taglicious({
       isMountedRef.current = false;
     };
   }, []);
+
+  React.useEffect(() => {
+    if (forcefullyFocused && !isFocused) inputRef.current?.focus();
+  }, [forcefullyFocused]);
 
   const clear = React.useCallback(
     (ev?: React.MouseEvent | undefined) => {
@@ -78,6 +87,7 @@ export function Taglicious({
     [onInputChange, onClear],
   );
 
+  const handleSetFocus = React.useCallback(() => inputRef.current?.focus(), []);
   const handleFocus = React.useCallback(() => setIsFocused(true), []);
   const handleBlur = React.useCallback(() => setIsFocused(false), []);
 
@@ -115,34 +125,48 @@ export function Taglicious({
     [onRemove],
   );
 
+  const tags = [...value].map((tag, index) => (
+    <React.Fragment key={index}>{renderTag({ tag, onRemove: handleRemove })}</React.Fragment>
+  ));
+
+  let input;
+  if (isCurrentlyFocused) {
+    input = (
+      <div className="taglicious-input-container" data-value={inputValue}>
+        {renderInput({
+          inputRef,
+          placeholder,
+          value: inputValue,
+          onChange: handleChange,
+          onKeyDown: handleKeyDown,
+          onFocus: handleFocus,
+          onBlur: handleBlur,
+        })}
+      </div>
+    );
+  } else if (value.length < 1) {
+    input = (
+      <div className="taglicious-input-placeholder">{renderPlaceholder({ placeholder })}</div>
+    );
+  }
+
+  let clearButton;
+  if (isClearable && (value.length > 0 || inputValue)) {
+    clearButton = renderClearButton({ onClick: clear });
+  }
+
   return (
     <div
-      className={classNames("taglicious", className, {
-        "focus-ring": forcefullyFocused || isFocused,
-      })}
+      className={classNames("taglicious", className, { "focus-ring": isCurrentlyFocused })}
+      onClick={handleSetFocus}
     >
       <div className="taglicious-outer-container">
-        <div className="taglicious-input-container">
-          {[...value].map((tag, index) => (
-            <React.Fragment key={index}>
-              {renderTag({ tag, onRemove: handleRemove })}
-            </React.Fragment>
-          ))}
-          {!isStatic &&
-            renderInput({
-              inputRef,
-              placeholder,
-              value: inputValue,
-              onChange: handleChange,
-              onKeyDown: handleKeyDown,
-              onFocus: handleFocus,
-              onBlur: handleBlur,
-            })}
+        <div className="taglicious-tags-container">
+          {tags}
+          {input}
         </div>
 
-        <div className="taglicious-controls">
-          {isClearable && (value.length > 0 || inputValue) && renderClearButton({ onClick: clear })}
-        </div>
+        <div className="taglicious-controls">{clearButton}</div>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import {
   Taglicious as BaseTaglicious,
   RenderClearButtonProps,
   RenderInputProps,
+  RenderPlaceholderProps,
   RenderTagProps,
 } from "@taglicious/react";
 
@@ -29,6 +30,7 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
     <BaseTaglicious
       className={className}
       {...props}
+      renderPlaceholder={renderPlaceholder}
       renderInput={renderInput}
       renderTag={renderTag}
       renderClearButton={renderClearButton}
@@ -36,9 +38,27 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
   );
 }
 
-function renderInput({ inputRef, ...props }: RenderInputProps) {
+function renderPlaceholder({ placeholder, ...props }: RenderPlaceholderProps) {
+  return (
+    <span {...props} className="text-muted">
+      {placeholder}
+    </span>
+  );
+}
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+function renderInput({ inputRef, placeholder, ...props }: RenderInputProps) {
   return (
     <input
+      autoCapitalize="none"
+      autoComplete="off"
+      autoCorrect="off"
+      spellCheck="false"
+      tabIndex={0}
+      aria-autocomplete="list"
+      aria-expanded="false"
+      aria-haspopup="true"
+      role="combobox"
       {...props}
       ref={inputRef as React.RefObject<HTMLInputElement>}
       className="taglicious-filter-input"
@@ -46,6 +66,7 @@ function renderInput({ inputRef, ...props }: RenderInputProps) {
     />
   );
 }
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 function renderTag({ tag, onRemove }: RenderTagProps) {
   return (
