@@ -46,10 +46,10 @@ interface PropsWithRender extends Props {
 }
 
 export function Taglicious({
-  clearable: isClearable = true,
+  clearable: isClearable,
   className,
   placeholder,
-  focused: forcefullyFocused = false,
+  focused: forcefullyFocused,
   value,
   onFocusChange,
   onInputChange,
