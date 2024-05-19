@@ -67,7 +67,6 @@ function Input({ attrs: _, inputRef, ...props }: RenderInputProps) {
       aria-autocomplete="list"
       aria-expanded="false"
       aria-haspopup="true"
-      role="combobox"
       {...props}
       ref={inputRef as React.RefObject<HTMLInputElement>}
       className="taglicious-filter-input"
