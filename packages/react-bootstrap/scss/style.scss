@@ -7,9 +7,13 @@
   .taglicious-outer-container {
     display: flex;
 
-    .taglicious-input-container {
+    .taglicious-tags-container {
+      // Handle overflow when input container exceeds available width after wrapping.
+      min-width: 0;
+      overflow: hidden;
+
       display: flex;
-      flex-grow: 1;
+      flex: 1 1 auto;
       flex-wrap: wrap;
 
       .taglicious-tag {
@@ -22,11 +26,38 @@
         }
       }
 
+      .taglicious-input-container {
+        flex: 1 1 auto;
+        // Inline grid layout here and in .taglicious-filter-input together with ::after trick
+        // allowing for automatically expanding input area was lifted almost verbatim from
+        // react-select.
+        display: inline-grid;
+        grid-area: 1 / 1 / 2 / 3;
+        grid-template-columns: 0 min-content;
+
+        &::after {
+          content: attr(data-value) " ";
+          visibility: hidden;
+          white-space: pre;
+          grid-area: 1 / 2;
+          font: inherit;
+          min-width: 2px;
+          border: 0;
+          margin: 0;
+          outline: 0;
+          padding: 0;
+        }
+      }
+
       .taglicious-filter-input {
-        border: none;
-        outline: none;
-        flex-grow: 1;
-        min-width: 10rem;
+        width: 100%;
+        grid-area: 1 / 2;
+        min-width: 2px;
+
+        border: 0;
+        margin: 0;
+        outline: 0;
+        padding: 0;
       }
     }
 
