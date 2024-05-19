@@ -11,8 +11,12 @@ export interface RenderComponents {
   ClearButton: React.FC<RenderProps>;
 }
 
-export interface RenderProps extends React.AllHTMLAttributes<HTMLElement> {
+export interface RenderAttrs {
   isFocused: boolean;
+}
+
+export interface RenderProps extends React.AllHTMLAttributes<HTMLElement> {
+  attrs: RenderAttrs;
 }
 
 export interface RenderInputProps extends RenderProps {
@@ -152,25 +156,25 @@ export function Taglicious({
     [onRemove],
   );
 
-  const attrs = { isFocused };
+  const attrs = { isFocused: isCurrentlyFocused };
 
   const tags = [...value].map((tag, index) => {
     const removeHandler = onRemove ? (ev: React.MouseEvent) => handleRemove(ev, tag) : null;
-    return <Tag key={index} {...attrs} tag={tag} onRemove={removeHandler} />;
+    return <Tag key={index} attrs={attrs} tag={tag} onRemove={removeHandler} />;
   });
 
   let input;
   if (!isCurrentlyFocused && !inputValue && value.length < 1) {
     input = (
       <div className="taglicious-input-placeholder">
-        <Placeholder {...attrs} placeholder={placeholder} />
+        <Placeholder attrs={attrs} placeholder={placeholder} />
       </div>
     );
   } else {
     input = (
       <div className="taglicious-input-container" data-value={inputValue}>
         <Input
-          {...attrs}
+          attrs={attrs}
           inputRef={inputRef}
           value={inputValue}
           onChange={handleChange}
@@ -184,13 +188,12 @@ export function Taglicious({
 
   let clearButton;
   if (isClearable && (value.length > 0 || inputValue)) {
-    clearButton = <ClearButton {...attrs} onClick={clear} />;
+    clearButton = <ClearButton attrs={attrs} onClick={clear} />;
   }
 
   return (
     <Container
-      {...attrs}
-      isFocused={isCurrentlyFocused}
+      attrs={attrs}
       className={classNames("taglicious", className)}
       onClick={handleSetFocus}
     >

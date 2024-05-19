@@ -39,7 +39,8 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
   return <BaseTaglicious className={className} {...props} components={components} />;
 }
 
-function Container({ isFocused, className, children, ...props }: RenderProps) {
+function Container({ attrs, className, children, ...props }: RenderProps) {
+  const { isFocused } = attrs;
   return (
     <div {...props} className={classNames(className, { "focus-ring": isFocused })}>
       {children}
@@ -47,7 +48,7 @@ function Container({ isFocused, className, children, ...props }: RenderProps) {
   );
 }
 
-function Placeholder({ placeholder, ...props }: RenderProps) {
+function Placeholder({ attrs: _, placeholder, ...props }: RenderProps) {
   return (
     <span {...props} className="text-muted">
       {placeholder}
@@ -55,7 +56,7 @@ function Placeholder({ placeholder, ...props }: RenderProps) {
   );
 }
 
-function Input({ inputRef, ...props }: RenderInputProps) {
+function Input({ attrs: _, inputRef, ...props }: RenderInputProps) {
   return (
     <input
       autoCapitalize="none"
@@ -75,7 +76,7 @@ function Input({ inputRef, ...props }: RenderInputProps) {
   );
 }
 
-function Tag({ tag, onRemove }: RenderTagProps) {
+function Tag({ attrs: _, tag, onRemove }: RenderTagProps) {
   return (
     <div className="taglicious-tag text-bg-secondary me-2 ps-2 pe-2 rounded-1 mb-1">
       <span>{tag.label}</span>
@@ -88,7 +89,7 @@ function Tag({ tag, onRemove }: RenderTagProps) {
   );
 }
 
-function ClearButton({ onClick }: RenderProps) {
+function ClearButton({ attrs: _, onClick }: RenderProps) {
   return (
     <span className="taglicious-clear-btn ms-2" onClick={onClick}>
       <XLg />
