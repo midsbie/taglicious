@@ -29,6 +29,7 @@ export interface RenderTagProps<T = Element> extends RenderProps {
 }
 
 export interface Props {
+  readonly?: boolean;
   clearable?: boolean;
   autoclear?: boolean;
   className?: string;
@@ -47,6 +48,7 @@ interface PropsWithRender extends Props {
 }
 
 export function Taglicious({
+  readonly,
   clearable: isClearable,
   className,
   placeholder,
@@ -164,7 +166,7 @@ export function Taglicious({
   });
 
   let input;
-  if (!isCurrentlyFocused && !inputValue && value.length < 1) {
+  if (readonly || (!isCurrentlyFocused && !inputValue && value.length < 1)) {
     input = (
       <div className="taglicious-input-placeholder">
         <Placeholder attrs={attrs} placeholder={placeholder} />
