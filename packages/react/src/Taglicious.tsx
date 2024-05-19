@@ -27,6 +27,7 @@ export interface RenderClearButtonProps<T = Element> {
 
 export interface Props {
   clearable?: boolean;
+  autoclear?: boolean;
   className?: string;
   placeholder?: string;
   focused?: boolean;
@@ -50,6 +51,7 @@ export function Taglicious({
   className,
   placeholder,
   focused: forcefullyFocused,
+  autoclear,
   value,
   onFocusChange,
   onInputChange,
@@ -81,6 +83,19 @@ export function Taglicious({
   React.useEffect(() => {
     onFocusChange?.(isFocused);
   }, [isFocused]);
+
+  React.useEffect(() => {
+    if (!autoclear || !inputValue) return;
+
+    const timeoutId = setTimeout(() => {
+      setInputValue("");
+      onInputChange("", InputChangeAction.filter);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [autoclear, isCurrentlyFocused]);
 
   const clear = React.useCallback(
     (ev?: React.MouseEvent | undefined) => {
@@ -148,7 +163,11 @@ export function Taglicious({
   ));
 
   let input;
-  if (isCurrentlyFocused) {
+  if (!isCurrentlyFocused && !inputValue && value.length < 1) {
+    input = (
+      <div className="taglicious-input-placeholder">{renderPlaceholder({ placeholder })}</div>
+    );
+  } else {
     input = (
       <div className="taglicious-input-container" data-value={inputValue}>
         {renderInput({
@@ -160,10 +179,6 @@ export function Taglicious({
           onBlur: handleBlur,
         })}
       </div>
-    );
-  } else if (value.length < 1) {
-    input = (
-      <div className="taglicious-input-placeholder">{renderPlaceholder({ placeholder })}</div>
     );
   }
 
