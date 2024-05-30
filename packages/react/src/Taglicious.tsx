@@ -111,7 +111,7 @@ export function Taglicious({
         ev.stopPropagation();
       }
     },
-    [inputValue, onInputChange, onClear],
+    [inputValue, onInputChange, onClear]
   );
 
   const handleSetFocus = React.useCallback(() => inputRef.current?.focus(), []);
@@ -136,7 +136,7 @@ export function Taglicious({
           return;
       }
     },
-    [inputValue, clear, onInputChange, onRemove],
+    [inputValue, clear, onInputChange, onRemove]
   );
 
   const handleChange = React.useCallback(
@@ -145,7 +145,7 @@ export function Taglicious({
       setInputValue(next);
       onInputChange(next.trim(), InputChangeAction.filter);
     },
-    [onInputChange],
+    [onInputChange]
   );
 
   const handleRemove = React.useCallback(
@@ -155,7 +155,7 @@ export function Taglicious({
       inputRef.current?.focus();
       ev.stopPropagation();
     },
-    [onRemove],
+    [onRemove]
   );
 
   const attrs = { isFocused: isCurrentlyFocused };
