@@ -1,8 +1,16 @@
 {
   "name": "@taglicious/model",
   "version": "0.0.1",
-  "main": "src/index.ts",
+  "main": "dist/model.cjs.js",
+  "module": "dist/model.esm.js",
   "license": "MIT",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "files": [
+    "LICENSE",
+    "dist"
+  ],
   "peerDependencies": {
     "react": "^18"
   }
