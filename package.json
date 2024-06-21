@@ -11,21 +11,21 @@
     "url": "git@github.com:midsbie/taglicious.git"
   },
   "scripts": {
-    "check": "set -e; for i in code lint fmt; do yarn run check:$i; done; echo 'check: PASS'",
-    "check:code": "yarn run check:tsc && yarn run check:lint",
+    "check": "set -e; for i in code lint fmt; do npm run check:$i; done; echo 'check: PASS'",
+    "check:code": "npm run check:tsc && npm run check:lint",
     "check:tsc": "tsc --noEmit",
-    "check:tsc:watch": "yarn run check:tsc --watch",
+    "check:tsc:watch": "npm run check:tsc --watch",
     "check:lint": "eslint --color --cache --max-warnings=0 './packages/**/*.{js,ts,tsx}'",
-    "check:fmt": "set -e; for i in src json md scss; do yarn run check:fmt:$i; done",
+    "check:fmt": "set -e; for i in src json md scss; do npm run check:fmt:$i; done",
     "check:fmt:src": "prettier './packages/**/*.{js,mjs,ts,tsx}' '!dist/**' --check",
     "check:fmt:json": "prettier --parser json '**/package.json' '!dist/**' --check",
     "check:fmt:md": "prettier --parser markdown '**/*.md' '!dist/**' --check",
     "check:fmt:scss": "prettier --parser scss '**/*.scss' '!dist/**' --check",
-    "fix:fmt": "set -e; for i in src json md scss; do yarn run fix:fmt:$i; done",
-    "fix:fmt:src": "yarn run check:fmt:src --write",
-    "fix:fmt:json": "yarn run check:fmt:json --write",
-    "fix:fmt:md": "yarn run check:fmt:md --write",
-    "fix:fmt:scss": "yarn run check:fmt:scss --write"
+    "fix:fmt": "set -e; for i in src json md scss; do npm run fix:fmt:$i; done",
+    "fix:fmt:src": "npm run check:fmt:src --write",
+    "fix:fmt:json": "npm run check:fmt:json --write",
+    "fix:fmt:md": "npm run check:fmt:md --write",
+    "fix:fmt:scss": "npm run check:fmt:scss --write"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",

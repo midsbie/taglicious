@@ -17,10 +17,10 @@ This guide will help you set up and use the Taglicious library in your project.
 
 ### Installation
 
-Start by installing the dependencies with Yarn:
+Start by installing the dependencies:
 
 ```sh
-yarn install
+npm install
 ```
 
 ### Usage
