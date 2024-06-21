@@ -11,6 +11,11 @@
     "url": "git@github.com:midsbie/taglicious.git"
   },
   "scripts": {
+    "clean": "rm -rf packages/*/dist && git restore packages/*/dist/*",
+    "clean:full": "npm run clean && rm -rf node_modules packages/*/node_modules",
+    "build": "npm run build --ws",
+    "version": "npm version --ws --no-workspaces-update --include-workspace-root",
+    "package": "npm pack --ws",
     "check": "set -e; for i in code lint fmt; do npm run check:$i; done; echo 'check: PASS'",
     "check:code": "npm run check:tsc && npm run check:lint",
     "check:tsc": "tsc --noEmit",
@@ -28,10 +33,20 @@
     "fix:fmt:scss": "npm run check:fmt:scss --write"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "eslint": "^9.2.0",
+    "esbuild": "^0.20.1",
+    "eslint": "^8.57.0",
     "lerna": "^8.1.2",
     "prettier": "^3.2.5",
+    "rollup": "^4.18.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-scss": "^4.0.0",
+    "sass": "^1.77.6",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.1.0"
   }

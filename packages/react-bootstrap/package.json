@@ -1,8 +1,16 @@
 {
   "name": "@taglicious/react-bootstrap",
   "version": "0.0.1",
-  "main": "src/index.ts",
+  "main": "dist/react-bootstrap.cjs.js",
+  "module": "dist/react-bootstrap.esm.js",
   "license": "MIT",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "files": [
+    "LICENSE",
+    "dist"
+  ],
   "peerDependencies": {
     "bootstrap": "^5",
     "react": "^18",

@@ -1,39 +1,43 @@
 {
+  /*
+   * Important documentation on Typescript compiler options to use with Babel:
+   * https://babeljs.io/docs/babel-plugin-transform-typescript#typescript-compiler-options
+   */
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
-    "module": "esnext",
+    /* Visit https://aka.ms/tsconfig to read more about this file */
     "target": "es6",
-    // Determines the strategy used to resolve modules. "node" mimics Node.js module resolution,
-    // suitable for most projects, especially those using npm packages. "classic" was the default in
-    // early TypeScript versions but is generally not recommended. Use "node" for projects targeting
-    // Node.js or using common bundlers like Webpack.
-    //
-    // https://github.com/microsoft/TypeScript/issues/25400#issuecomment-580720429
-    "moduleResolution": "node",
-    "noImplicitReturns": true,
-    "incremental": true,
-    "noEmit": true,
-    "strict": true,
-    // Note that this setting is effectively ignored because it requires `noEmit` to NOT be true,
-    // which it is currently.
+    "module": "esnext",
+    "declarationDir": "types",
+    "jsx": "react",
     "declaration": true,
-    "importHelpers": true,
-    "isolatedModules": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "sourceMap": true
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    // For web applications targeting modern web browsers, the lib array should include typings for
+    // the DOM and ECMAScript features in use. For React applications, DOM typings are essential for
+    // manipulating and accessing the DOM. Targeting modern web browsers facilitates the use of
+    // recent ECMAScript features.
+    //
+    // * "dom" and "dom.iterable" provide typings for web APIs and DOM operations, crucial for
+    //   web development and user interactions within a React app. "dom.iterable" enhances support
+    //   for iterable collections in the DOM, allowing for more natural iteration patterns.
+    //
+    // * "esnext" includes the latest ECMAScript features, ensuring access to the most recent
+    //   language developments. While "esnext" is recommended for leveraging cutting-edge features,
+    //   specific versions like "es2020" can be targeted for more conservative compatibility. Ensure
+    //   that your development and production environments support these features, either natively
+    //   or through polyfills and bundlers.
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "paths": {
+      "@taglicious/model": ["packages/model/src/index.ts"],
+      "@taglicious/react": ["packages/react/src/index.ts"],
+      "@taglicious/react-bootstrap": ["packages/react-bootstrap/src/index.ts"]
+    }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
