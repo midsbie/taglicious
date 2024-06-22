@@ -1,6 +1,6 @@
 {
   "name": "@taglicious/react-bootstrap",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "main": "dist/react-bootstrap.cjs.js",
   "module": "dist/react-bootstrap.esm.js",
   "license": "MIT",
