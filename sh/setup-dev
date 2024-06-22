@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+cd $(git rev-parse --show-toplevel)
+
+for i in packages/*; do
+  rm -rf $i/dist
+  mkdir $i/dist
+  echo "export * from '../src';" > $i/dist/$(basename $i).cjs.js
+  echo "export * from '../src';" > $i/dist/$(basename $i).esm.js
+done
