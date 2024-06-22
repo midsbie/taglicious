@@ -25,7 +25,7 @@
     "check:tsc": "tsc --noEmit",
     "check:tsc:watch": "npm run check:tsc --watch",
     "check:lint": "eslint --color --cache --max-warnings=0 './packages/**/*.{js,ts,tsx}'",
-    "check:fmt": "prettier package.json storybook/** './packages/**' '!node_modules/**' '!dist/**' --check --ignore-unknown --no-error-on-unmatched-pattern",
+    "check:fmt": "prettier * storybook/** './packages/**' '!node_modules/**' '!dist/**' --check --ignore-unknown --no-error-on-unmatched-pattern",
     "fix:fmt": "npm run check:fmt -- --write"
   },
   "devDependencies": {
