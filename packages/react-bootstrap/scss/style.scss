@@ -49,6 +49,13 @@
         }
       }
 
+      .taglicious-input-placeholder {
+        & > span {
+          display: inline-block;
+          height: 1rem;
+        }
+      }
+
       .taglicious-filter-input {
         width: 100%;
         grid-area: 1 / 2;
