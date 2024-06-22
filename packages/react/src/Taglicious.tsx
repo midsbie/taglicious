@@ -100,7 +100,13 @@ export function Taglicious({
     [inputValue, onInputChange, onClear],
   );
 
-  const handleSetFocus = React.useCallback(() => inputRef.current?.focus(), []);
+  // XXX: is there ANY chance that the state mutation will NOT result in (1) the input element being
+  // rendered and (2) the input ref updated before the animation frame callback runs?
+  const handleSetFocus = React.useCallback(() => {
+    setIsFocused(true);
+    requestAnimationFrame(() => inputRef.current?.focus());
+  }, []);
+
   const handleFocus = React.useCallback(() => setIsFocused(true), []);
   const handleBlur = React.useCallback(() => setIsFocused(false), []);
 
