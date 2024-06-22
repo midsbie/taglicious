@@ -3,30 +3,8 @@ import * as React from "react";
 
 import { InputChangeAction, Tag } from "@taglicious/model";
 
-export interface RenderComponents {
-  Container: React.FC<RenderProps>;
-  Input: React.FC<RenderInputProps>;
-  Placeholder: React.FC<RenderProps>;
-  Tag: React.FC<RenderTagProps>;
-  ClearButton: React.FC<RenderProps>;
-}
-
-export interface RenderAttrs {
-  isFocused: boolean;
-}
-
-export interface RenderProps extends React.AllHTMLAttributes<HTMLElement> {
-  attrs: RenderAttrs;
-}
-
-export interface RenderInputProps extends RenderProps {
-  inputRef: React.RefObject<HTMLElement>;
-}
-
-export interface RenderTagProps<T = Element> extends RenderProps {
-  tag: Tag;
-  onRemove: ((ev: React.MouseEvent<T>) => void) | undefined | null;
-}
+import { DefaultInnerWrapper, DefaultTagsContainer } from "./renderers";
+import { RenderComponents } from "./typedefs";
 
 export interface Props {
   readonly?: boolean;
@@ -66,7 +44,15 @@ export function Taglicious({
   const [inputValue, setInputValue] = React.useState("");
   const [isFocused, setIsFocused] = React.useState(false);
   const isCurrentlyFocused = forcefullyFocused || isFocused;
-  const { Container, Input, Placeholder, Tag, ClearButton } = components;
+  const {
+    Container,
+    InnerWrapper = DefaultInnerWrapper,
+    TagsContainer = DefaultTagsContainer,
+    Input,
+    Placeholder,
+    Tag,
+    ClearButton,
+  } = components;
 
   React.useEffect(() => {
     isMountedRef.current = true;
@@ -198,14 +184,14 @@ export function Taglicious({
       className={classNames("taglicious", className)}
       onClick={handleSetFocus}
     >
-        <div className="taglicious-tags-container">
+      <InnerWrapper attrs={attrs} className="taglicious-inner-wrapper">
+        <TagsContainer attrs={attrs} className="taglicious-tags-container">
           {tags}
           {input}
-        </div>
+        </TagsContainer>
 
         <div className="taglicious-controls">{clearButton}</div>
-      </div>
-      <div className="taglicious-inner-wrapper">
+      </InnerWrapper>
     </Container>
   );
 }
