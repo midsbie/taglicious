@@ -198,7 +198,6 @@ export function Taglicious({
       className={classNames("taglicious", className)}
       onClick={handleSetFocus}
     >
-      <div className="taglicious-outer-container">
         <div className="taglicious-tags-container">
           {tags}
           {input}
@@ -206,6 +205,7 @@ export function Taglicious({
 
         <div className="taglicious-controls">{clearButton}</div>
       </div>
+      <div className="taglicious-inner-wrapper">
     </Container>
   );
 }
