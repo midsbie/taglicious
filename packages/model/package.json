@@ -1,6 +1,6 @@
 {
   "name": "@taglicious/model",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "main": "dist/model.cjs.js",
   "module": "dist/model.esm.js",
   "license": "MIT",
