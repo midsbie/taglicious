@@ -153,7 +153,6 @@ export function Taglicious({
       ev.stopPropagation();
       onRemove?.(tag);
       inputRef.current?.focus();
-      ev.stopPropagation();
     },
     [onRemove]
   );
