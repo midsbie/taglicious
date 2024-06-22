@@ -13,5 +13,6 @@
   ],
   "peerDependencies": {
     "react": "^18"
-  }
+  },
+  "gitHead": "02bb42a9382cf92b1d008378adaf2db035e1148a"
 }
