@@ -1,6 +1,6 @@
 {
   "name": "@taglicious/react",
-  "version": "1.0.2-alpha.0",
+  "version": "1.1.0-alpha.0",
   "main": "dist/react.cjs.js",
   "module": "dist/react.esm.js",
   "license": "MIT",
