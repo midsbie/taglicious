@@ -1,6 +1,8 @@
 @import "../../react/scss/style";
 
 .taglicious {
+  $tag-margin: 0.25rem;
+
   &.focus-ring {
     box-shadow: var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur, 0)
       var(--bs-focus-ring-width) var(--bs-focus-ring-color);
@@ -8,6 +10,22 @@
 
   .taglicious-inner-wrapper {
     .taglicious-tags-container {
+      // Shifting the the container up to compensate for the top margin used by the tag
+      // elements.
+      //
+      // The previous iteration used the mb-1 class, but fully implementing it required the mb-n1
+      // class.  This class isn't available by default and needs a special flag [1] that not all
+      // users can enable.
+      //
+      // [1] https://getbootstrap.com/docs/5.0/utilities/spacing/#negative-margin
+      margin-top: -$tag-margin;
+
+      // Deliberately applying the top margin to ALL elements, not just the tags, to avoid visual
+      // discrepancies and inconsistencies between tags and the input element and placeholder.
+      > * {
+        margin-top: $tag-margin;
+      }
+
       .taglicious-input-container {
         flex: 1 1 auto;
         // Inline grid layout here and in .taglicious-filter-input together with ::after trick
