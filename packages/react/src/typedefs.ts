@@ -1,3 +1,5 @@
+import { Tag } from "@taglicious/model";
+
 export interface RenderComponents {
   Container: React.FC<RenderProps>;
   InnerWrapper?: React.FC<RenderProps>;
