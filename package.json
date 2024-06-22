@@ -15,9 +15,9 @@
   "scripts": {
     "postinstall": "sh/setup-dev",
     "setup": "npm install && cd storybook && npm install",
+    "build": "npm run build -w @taglicious/model -w @taglicious/react -w @taglicious/react-bootstrap",
     "clean": "rm -rf packages/*/dist && sh/setup-dev",
     "clean:full": "npm run clean && rm -rf node_modules storybook/node_modules packages/*/node_modules",
-    "build": "npm run build --ws",
     "version": "npm version --ws --no-workspaces-update --include-workspace-root",
     "package": "npm pack --ws",
     "check": "set -e; for i in code lint fmt; do npm run check:$i; done; echo 'check: PASS'",
@@ -35,6 +35,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "dts-bundle-generator": "^9.5.1",
     "eslint": "^8.57.0",
     "lerna": "^8.1.3",
     "prettier": "^3.2.5",

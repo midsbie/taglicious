@@ -5,8 +5,9 @@
   "module": "dist/model.esm.js",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rm -rf dist && rollup -c && dts-bundle-generator --export-referenced-types=false -o dist/index.d.ts src/index.ts"
   },
+  "types": "dist/index.d.ts",
   "files": [
     "LICENSE",
     "dist"

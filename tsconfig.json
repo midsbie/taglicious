@@ -5,16 +5,15 @@
    */
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
+    "baseUrl": ".",
     "target": "es6",
     "module": "esnext",
-    "declarationDir": "types",
     "jsx": "react",
-    "declaration": true,
     "sourceMap": true,
     "strict": true,
+    "declaration": false,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     // For web applications targeting modern web browsers, the lib array should include typings for
@@ -31,13 +30,10 @@
     //   specific versions like "es2020" can be targeted for more conservative compatibility. Ensure
     //   that your development and production environments support these features, either natively
     //   or through polyfills and bundlers.
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "paths": {
-      "@taglicious/model": ["packages/model/src/index.ts"],
-      "@taglicious/react": ["packages/react/src/index.ts"],
-      "@taglicious/react-bootstrap": ["packages/react-bootstrap/src/index.ts"]
-    }
-  },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
+  }
 }
