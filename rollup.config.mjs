@@ -50,7 +50,9 @@ export function buildConfig({ styles } = {}) {
         scss({
           // Unfortunately, the file name must be explicitly given again or a phantom
           // "react-bootstrap.css" will be created with the CSS styling output to
-          // "react-bootstrap2.css" instead.
+          // "react-bootstrap2.css" instead. Sadly this hack produces the following warning:
+          //
+          //   The emitted file "react.css" overwrites a previously emitted file of the same name.
           fileName: `${canonicalName}.css`,
           outputStyle: "compressed",
         }),
