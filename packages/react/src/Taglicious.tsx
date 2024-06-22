@@ -147,7 +147,9 @@ export function Taglicious({
 
   const tags = [...value].map((tag, index) => {
     const removeHandler = onRemove ? (ev: React.MouseEvent) => handleRemove(ev, tag) : null;
-    return <Tag key={index} attrs={attrs} tag={tag} onRemove={removeHandler} />;
+    return (
+      <Tag key={index} attrs={attrs} tag={tag} onRemove={readonly ? undefined : removeHandler} />
+    );
   });
 
   let input;
