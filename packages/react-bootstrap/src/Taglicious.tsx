@@ -42,7 +42,7 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
 function Container({ attrs, className, children, ...props }: RenderProps) {
   const { isFocused } = attrs;
   return (
-    <div {...props} className={classNames(className, { "focus-ring": isFocused })}>
+    <div {...props} className={classNames(className, { "focus-ring": isFocused }, "mb-n1")}>
       {children}
     </div>
   );
