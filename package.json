@@ -13,8 +13,9 @@
     "url": "git@github.com:midsbie/taglicious.git"
   },
   "scripts": {
+    "postinstall": "sh/setup-dev",
     "setup": "npm install && cd storybook && npm install",
-    "clean": "rm -rf packages/*/dist && git restore packages/*/dist/*",
+    "clean": "rm -rf packages/*/dist && sh/setup-dev",
     "clean:full": "npm run clean && rm -rf node_modules storybook/node_modules packages/*/node_modules",
     "build": "npm run build --ws",
     "version": "npm version --ws --no-workspaces-update --include-workspace-root",
