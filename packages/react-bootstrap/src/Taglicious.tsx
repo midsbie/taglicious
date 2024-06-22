@@ -42,7 +42,7 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
 function Container({ attrs, className, children, ...props }: RenderProps) {
   const { isFocused } = attrs;
   return (
-    <div {...props} className={classNames(className, { "focus-ring": isFocused }, "mb-n1")}>
+    <div {...props} className={classNames(className, { "focus-ring": isFocused })}>
       {children}
     </div>
   );
@@ -77,7 +77,7 @@ function Input({ attrs: _, inputRef, ...props }: RenderInputProps) {
 
 function Tag({ attrs: _, tag, onRemove }: RenderTagProps) {
   return (
-    <div className="taglicious-tag text-bg-secondary me-2 ps-2 pe-2 rounded-1 mb-1">
+    <div className="taglicious-tag text-bg-secondary me-2 ps-2 pe-2 rounded-1">
       <span>{tag.label}</span>
       {onRemove && (
         <span className="taglicious-remove-btn link-light ps-2" onClick={onRemove}>
