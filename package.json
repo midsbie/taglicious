@@ -23,16 +23,8 @@
     "check:tsc": "tsc --noEmit",
     "check:tsc:watch": "npm run check:tsc --watch",
     "check:lint": "eslint --color --cache --max-warnings=0 './packages/**/*.{js,ts,tsx}'",
-    "check:fmt": "set -e; for i in src json md scss; do npm run check:fmt:$i; done",
-    "check:fmt:src": "prettier './packages/**/*.{js,mjs,ts,tsx}' '!dist/**' --check",
-    "check:fmt:json": "prettier --parser json '**/package.json' '!dist/**' --check",
-    "check:fmt:md": "prettier --parser markdown '**/*.md' '!dist/**' --check",
-    "check:fmt:scss": "prettier --parser scss '**/*.scss' '!dist/**' --check",
-    "fix:fmt": "set -e; for i in src json md scss; do npm run fix:fmt:$i; done",
-    "fix:fmt:src": "npm run check:fmt:src --write",
-    "fix:fmt:json": "npm run check:fmt:json --write",
-    "fix:fmt:md": "npm run check:fmt:md --write",
-    "fix:fmt:scss": "npm run check:fmt:scss --write"
+    "check:fmt": "prettier package.json storybook/** './packages/**' '!node_modules/**' '!dist/**' --check --ignore-unknown --no-error-on-unmatched-pattern",
+    "fix:fmt": "npm run check:fmt -- --write"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
