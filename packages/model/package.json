@@ -1,6 +1,6 @@
 {
   "name": "@taglicious/model",
-  "version": "0.0.0",
+  "version": "1.0.2-alpha.0",
   "main": "dist/model.cjs.js",
   "module": "dist/model.esm.js",
   "license": "MIT",
@@ -14,6 +14,5 @@
   ],
   "peerDependencies": {
     "react": "^18"
-  },
-  "gitHead": "02bb42a9382cf92b1d008378adaf2db035e1148a"
+  }
 }
