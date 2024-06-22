@@ -30,7 +30,7 @@ export function Taglicious({ variant = "input", className, ...props }: Props) {
       Tag,
       ClearButton,
     }),
-    []
+    [],
   );
 
   const mappedVariantClass = variantClassMapping[variant];

@@ -5,7 +5,9 @@
   "description": "Taglicious is a versatile and extensible React component for managing tags and multi-select inputs with customizable rendering and seamless integration with various UI libraries.",
   "author": "Miguel Guedes <miguel@softgeist.com>",
   "license": "MIT",
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:midsbie/taglicious.git"
