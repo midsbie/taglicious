@@ -8,7 +8,7 @@ import {
   RenderInputProps,
   RenderProps,
   RenderTagProps,
-} from "@taglicious/react";
+} from "@taglicious/react-core";
 
 type Variant = "input" | "select";
 

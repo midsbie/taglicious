@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@taglicious/model": "^1.1.0-alpha.0",
-    "@taglicious/react": "^1.1.0-alpha.0",
+    "@taglicious/react-core": "^1.1.0-alpha.0",
     "classnames": "^2.5.1"
   }
 }
