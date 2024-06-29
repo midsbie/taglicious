@@ -5,8 +5,11 @@
   "description": "Taglicious is a versatile and extensible React component for managing tags and multi-select inputs with customizable rendering and seamless integration with various UI libraries.",
   "author": "Miguel Guedes <miguel@softgeist.com>",
   "license": "MIT",
+  "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/model",
+    "packages/react-core",
+    "packages/react-bootstrap"
   ],
   "repository": {
     "type": "git",
@@ -15,8 +18,8 @@
   "scripts": {
     "postinstall": "sh/setup-dev",
     "setup": "npm install && cd storybook && npm install",
-    "build": "npm run build -w @taglicious/model -w @taglicious/react -w @taglicious/react-bootstrap",
     "clean": "rm -rf packages/*/dist && sh/setup-dev",
+    "build": "npm run build --ws",
     "clean:full": "npm run clean && rm -rf node_modules storybook/node_modules packages/*/node_modules",
     "version": "npm version --ws --no-workspaces-update --include-workspace-root",
     "package": "npm pack --ws",
