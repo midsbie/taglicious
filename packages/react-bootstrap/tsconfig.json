@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "paths": {
-      "@taglicious/model": ["../model"],
-      "@taglicious/react-core": ["../react-core"]
-    }
-  }
-}

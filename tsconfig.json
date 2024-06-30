@@ -1,8 +1,4 @@
 {
-  /*
-   * Important documentation on Typescript compiler options to use with Babel:
-   * https://babeljs.io/docs/babel-plugin-transform-typescript#typescript-compiler-options
-   */
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "baseUrl": ".",
@@ -30,10 +26,13 @@
     //   specific versions like "es2020" can be targeted for more conservative compatibility. Ensure
     //   that your development and production environments support these features, either natively
     //   or through polyfills and bundlers.
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ]
+    "lib": ["dom", "dom.iterable", "esnext"],
+    // These path mappings are required to enable the LSP server to correctly resolve import paths
+    // for the specified packages.
+    "paths": {
+      "@taglicious/model": ["packages/model/src/index.ts"],
+      "@taglicious/react-core": ["packages/react-core/src/index.ts"],
+      "@taglicious/react-bootstrap": ["packages/react-bootstrap/src/index.ts"]
+    }
   }
 }
