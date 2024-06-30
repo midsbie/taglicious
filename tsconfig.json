@@ -8,7 +8,11 @@
     "sourceMap": true,
     "strict": true,
     "declaration": false,
-    "moduleResolution": "node",
+    // The @selectoroid project required this to be "bundler" or tsc would not be able to resolve
+    // the declaration types specified under the `exports` field in the package.json files of the
+    // @taglicious dependent packages. A very annoying side-effect of this is that
+    // dts-bundle-generator would be unable to produce declaration types for some packages.
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
