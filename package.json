@@ -17,18 +17,12 @@
   },
   "scripts": {
     "setup": "npm install && cd storybook && npm install",
-    "build": "npm run build --ws",
     "clean": "rm -rf packages/*/dist",
     "clean:full": "npm run clean && rm -rf node_modules storybook/node_modules packages/*/node_modules",
-    "version": "npm version --ws --no-workspaces-update --include-workspace-root",
-    "package": "npm pack --ws",
-    "check": "set -e; for i in code lint fmt; do npm run check:$i; done; echo 'check: PASS'",
-    "check:code": "npm run check:tsc && npm run check:lint",
-    "check:tsc": "tsc --noEmit",
-    "check:tsc:watch": "npm run check:tsc --watch",
-    "check:lint": "eslint --color --cache --max-warnings=0 './packages/**/*.{js,ts,tsx}'",
-    "check:fmt": "prettier * storybook/** './packages/**' '!node_modules/**' '!dist/**' --check --ignore-unknown --no-error-on-unmatched-pattern",
-    "fix:fmt": "npm run check:fmt -- --write"
+    "build": "npm exec --ws -- devout build",
+    "lint": "tsc --noEmit && eslint . && prettier --check .",
+    "fmt": "prettier --write .",
+    "version": "npm version --ws --no-workspaces-update --include-workspace-root"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
