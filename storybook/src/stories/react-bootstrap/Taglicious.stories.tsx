@@ -10,7 +10,7 @@ import "./style.scss";
 // More on how to set up stories at:
 // https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Taglicious> = {
-  title: "Bootstrap Taglicious",
+  title: "Taglicious/React Bootstrap",
   component: Taglicious,
   parameters: {
     // Optional parameter to center the component in the Canvas.
