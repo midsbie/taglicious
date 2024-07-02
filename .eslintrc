@@ -1,0 +1,62 @@
+# Not all plugins support the newest version of eslint but when they do and eslint is upgraded to v9
+# or higher, the .eslintrc configuration file will likely not be supported anymore and a "flat
+# config" will be required instead. Included below is the last flat config that was in use before
+# the decision was made to downgrade to eslint v8:
+#
+# // @ts-check
+# import eslint from "@eslint/js";
+# import reactEslint from "eslint-plugin-react";
+# import tsEslint from "typescript-eslint";
+#
+# export default tsEslint.config({
+#   files: ["**/*.ts", "**/*.tsx"],
+#   extends: [eslint.configs.recommended, ...tsEslint.configs.recommended],
+#   rules: {
+#     "@typescript-eslint/no-explicit-any": "off",
+#     "@typescript-eslint/no-unused-vars": [
+#       "error",
+#       {
+#         argsIgnorePattern: "^_",
+#         varsIgnorePattern: "^_",
+#         caughtErrorsIgnorePattern: "^_",
+#       },
+#     ],
+#   },
+#   ignores: ["**/dist/"],
+#   languageOptions: {
+#     globals: {
+#       console: "readonly",
+#       process: "readonly",
+#     },
+#   },
+# });
+# ---
+root: true
+
+settings:
+  react: { version: "detect" }
+
+plugins:
+  - "@typescript-eslint"
+  - react
+  - react-hooks
+  - import
+
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:react/recommended
+  - plugin:react-hooks/recommended
+  # Disabled as it produces false positives such as:
+  #   1:10  error  AnyAction not found in 'redux'  import/named
+  #
+  # - plugin:import/recommended
+
+env:
+  browser: true
+  es6: true
+
+rules:
+  "@typescript-eslint/no-explicit-any": 0
+  "@typescript-eslint/no-unused-vars": [1, { "argsIgnorePattern": "^_" }]
