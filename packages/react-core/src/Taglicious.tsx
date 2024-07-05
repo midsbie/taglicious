@@ -64,10 +64,12 @@ export function Taglicious({
 
   React.useEffect(() => {
     if (forcefullyFocused && !isFocused) inputRef.current?.focus();
+    // eslint-disable-next-line
   }, [forcefullyFocused]);
 
   React.useEffect(() => {
     onFocusChange?.(isFocused);
+    // eslint-disable-next-line
   }, [isFocused]);
 
   React.useEffect(() => {
@@ -81,6 +83,7 @@ export function Taglicious({
     return () => {
       clearTimeout(timeoutId);
     };
+    // eslint-disable-next-line
   }, [autoclear, isCurrentlyFocused]);
 
   const clear = React.useCallback(
@@ -128,7 +131,7 @@ export function Taglicious({
           return;
       }
     },
-    [inputValue, clear, onInputChange, onRemove],
+    [value, inputValue, clear, onInputChange, onRemove],
   );
 
   const handleChange = React.useCallback(
