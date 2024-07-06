@@ -1,5 +1,6 @@
 {
   "name": "@taglicious/model",
+  "author": "Miguel Guedes <miguel@softgeist.com>",
   "version": "1.2.3-alpha.0",
   "license": "MIT",
   "type": "module",
@@ -11,13 +12,13 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "peerDependencies": {
+    "react": "^18"
+  },
   "files": [
     "LICENSE",
     "dist"
   ],
-  "peerDependencies": {
-    "react": "^18"
-  },
   "publishConfig": {
     "access": "public"
   }

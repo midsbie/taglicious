@@ -1,5 +1,6 @@
 {
   "name": "@taglicious/react-core",
+  "author": "Miguel Guedes <miguel@softgeist.com>",
   "version": "1.2.3-alpha.0",
   "license": "MIT",
   "type": "module",
@@ -11,10 +12,6 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": [
-    "LICENSE",
-    "dist"
-  ],
   "dependencies": {
     "@taglicious/model": "^1.2.3-alpha.0",
     "classnames": "^2.5.1"
@@ -22,6 +19,10 @@
   "peerDependencies": {
     "react": "^18"
   },
+  "files": [
+    "LICENSE",
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   }
