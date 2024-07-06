@@ -22,6 +22,10 @@ const meta: Meta<typeof Taglicious> = {
   tags: ["autodocs"],
   // https://storybook.js.org/docs/api/argtypes
   argTypes: {
+    focused: {
+      description: "When given, forcefully sets the focused state of the widget.",
+      control: "boolean",
+    },
     clearable: {
       description: `\
 Enables an X button in the component that clears the input field first when clicked. If the input
