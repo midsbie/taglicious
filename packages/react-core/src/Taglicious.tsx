@@ -178,7 +178,6 @@ export function Taglicious({
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
-          onBlur={handleBlur}
         />
       </div>
     );
@@ -189,10 +188,23 @@ export function Taglicious({
     clearButton = <ClearButton attrs={attrs} onClick={clear} />;
   }
 
+  // The onBlur event handler is attached to the Container component rather than the input element
+  // for the following reasons:
+  //
+  // 1. Consistent behavior: ensures blur handling regardless of the input's render state.
+  // 2. Event bubbling: captures blur events from all focusable child elements.
+  // 3. Broader focus management: handles focus for the entire component, not just the input.
+  // 4. Complex interactions: maintains focus state during interactions with other elements (e.g.,
+  //    tags, clear button).
+  // 5. Simplified conditional rendering: avoids managing handler attachment/detachment as input
+  //    visibility changes.
+  // 6. State cohesion: centralizes focus state management at the component level.
   return (
     <Container
       attrs={attrs}
       className={classNames("taglicious", className)}
+      tabIndex={-1}
+      onBlur={handleBlur}
       onClick={handleSetFocus}
     >
       <InnerWrapper attrs={attrs} className="taglicious-inner-wrapper">
