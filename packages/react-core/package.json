@@ -1,9 +1,10 @@
 {
   "name": "@taglicious/react-core",
-  "version": "1.2.0-alpha.0",
+  "version": "1.2.3-alpha.0",
   "license": "MIT",
-  "main": "src/index.ts",
   "type": "module",
+  "main": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
@@ -15,12 +16,8 @@
     "dist"
   ],
   "dependencies": {
-    "@taglicious/model": "^1.2.0-alpha.0",
+    "@taglicious/model": "^1.2.3-alpha.0",
     "classnames": "^2.5.1"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.2",
-    "react": "^18.3.1"
   },
   "peerDependencies": {
     "react": "^18"
