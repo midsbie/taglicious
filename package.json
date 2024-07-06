@@ -1,5 +1,5 @@
 {
-  "name": "taglicious",
+  "name": "@taglicious",
   "private": true,
   "version": "1.2.3-alpha.0",
   "description": "Taglicious is a versatile and extensible React component for managing tags and multi-select inputs with customizable rendering and seamless integration with various UI libraries.",
