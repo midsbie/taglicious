@@ -21,7 +21,8 @@
   },
   "files": [
     "LICENSE",
-    "dist"
+    "dist",
+    "scss"
   ],
   "publishConfig": {
     "access": "public"
