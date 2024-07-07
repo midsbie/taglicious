@@ -1,7 +1,7 @@
 {
   "name": "@taglicious/react-bootstrap",
   "author": "Miguel Guedes <miguel@softgeist.com>",
-  "version": "1.2.3-alpha.2",
+  "version": "1.2.3-alpha.3",
   "license": "MIT",
   "type": "module",
   "main": "./src/index.ts",
@@ -11,8 +11,8 @@
     "postpublish": "git checkout package.json"
   },
   "dependencies": {
-    "@taglicious/model": "^1.2.3-alpha.2",
-    "@taglicious/react-core": "^1.2.3-alpha.2",
+    "@taglicious/model": "^1.2.3-alpha.3",
+    "@taglicious/react-core": "^1.2.3-alpha.3",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {
