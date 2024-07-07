@@ -7,8 +7,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "build": "devout build",
-    "prepack": "devout prepare",
-    "postpublish": "git checkout package.json"
+    "prepack": "devout prepare"
   },
   "dependencies": {
     "@taglicious/model": "^1.2.3-alpha.3",

@@ -7,8 +7,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "build": "devout build",
-    "prepack": "devout prepare",
-    "postpublish": "git checkout package.json"
+    "prepack": "devout prepare"
   },
   "peerDependencies": {
     "react": "^18"
