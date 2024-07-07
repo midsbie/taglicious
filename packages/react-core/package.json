@@ -4,13 +4,10 @@
   "version": "1.2.3-alpha.2",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.esm.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.esm.js",
-      "types": "./dist/index.d.ts"
-    }
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "devout build",
+    "prepack": "devout prepare"
   },
   "dependencies": {
     "@taglicious/model": "^1.2.3-alpha.2",
