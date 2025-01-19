@@ -31,6 +31,11 @@
     //   that your development and production environments support these features, either natively
     //   or through polyfills and bundlers.
     "lib": ["dom", "dom.iterable", "esnext"],
+    // Adding @types/react explicitly prevents a bunch of errors such as:
+    //   node_modules/@types/mdx/types.d.ts:23:38 - error TS2503: Cannot find namespace 'JSX'.
+    //
+    //   23 type StringComponent = Extract<keyof JSX.IntrinsicElements, ElementType extends never ? string : ElementType>;
+    "types": ["@types/react"],
     // These path mappings are required to enable the LSP server to correctly resolve import paths
     // for the specified packages.
     "paths": {
