@@ -24,7 +24,7 @@
     "build:storybook": "storybook build",
     "lint": "tsc --noEmit && eslint . && prettier --check .",
     "fmt": "prettier --write .",
-    "version": "npm version --ws --no-workspaces-update --include-workspace-root"
+    "version": "npm version --ws --include-workspace-root"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.1.4",
