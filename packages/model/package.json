@@ -9,9 +9,6 @@
     "build": "devout build",
     "prepack": "devout prepare"
   },
-  "peerDependencies": {
-    "react": "^18"
-  },
   "files": [
     "LICENSE",
     "dist"

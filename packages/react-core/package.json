@@ -14,7 +14,7 @@
     "classnames": "^2.5.1"
   },
   "peerDependencies": {
-    "react": "^18"
+    "react": "^19"
   },
   "files": [
     "LICENSE",
