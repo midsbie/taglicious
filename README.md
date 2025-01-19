@@ -93,9 +93,19 @@ should be executed from the repository's root directory:
 
         git status
 
-    If the repository is clean, create a new version tag:
+    If the repository is clean, then:
+
+    1.  Create a new release version:
 
         npm run version <minor|major|patch>
+
+    1.  Update the version in the root `package.json` file
+    1.  Update the versions of all local dependencies in each workspace `package.json` file
+    1.  Commit changes making sure title corresponds to the version tag
+
+    1.  Create an annotated git tag:
+
+            git tag -m v1.1.0 v1.1.0
 
 1.  Generate the artifacts by running the build process:
 
