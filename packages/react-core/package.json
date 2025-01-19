@@ -1,7 +1,7 @@
 {
   "name": "@taglicious/react-core",
   "author": "Miguel Guedes <miguel@softgeist.com>",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "license": "MIT",
   "type": "module",
   "main": "./src/index.ts",
@@ -10,7 +10,7 @@
     "prepack": "devout prepare"
   },
   "dependencies": {
-    "@taglicious/model": "^1.3.1",
+    "@taglicious/model": "^1.5.0",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {
