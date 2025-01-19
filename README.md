@@ -103,7 +103,7 @@ should be executed from the repository's root directory:
 
 1.  Publish the package to NPM, including all configured workspaces:
 
-        npm publish --workspaces
+        npm run publish
 
 ## Contributing
 
