@@ -19,7 +19,7 @@ export interface RenderProps extends React.AllHTMLAttributes<HTMLElement> {
 }
 
 export interface RenderInputProps extends RenderProps {
-  inputRef: React.RefObject<HTMLElement>;
+  inputRef: React.RefObject<HTMLElement | null>;
 }
 
 export interface RenderTagProps<T = Element> extends RenderProps {
