@@ -67,6 +67,44 @@ Render the `Taglicious` component with your tags and handlers:
 />
 ```
 
+## Building Artifacts & Publishing to NPM
+
+Follow these steps to build the Taglicious artifacts and publish the libraries to NPM. All commands
+should be executed from the repository's root directory:
+
+1.  Run the linter to ensure there are no warnings or errors. Address any issues before proceeding:
+
+        npm run lint
+
+1.  Ensure all files are formatted correctly. If any files are modified during this step, commit the
+    changes:
+
+        npm run fmt
+
+1.  Remove any previous build artifacts to ensure a fresh build:
+
+        npm run clean
+
+    Or, for a more thorough cleanup:
+
+        npm run clean:full
+
+1.  Ensure there are no uncommitted changes:
+
+        git status
+
+    If the repository is clean, create a new version tag:
+
+        npm run version <minor|major|patch>
+
+1.  Generate the artifacts by running the build process:
+
+        npm run build
+
+1.  Publish the package to NPM, including all configured workspaces:
+
+        npm publish --workspaces
+
 ## Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and
